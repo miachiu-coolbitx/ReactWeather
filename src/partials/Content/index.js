@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 //meta tags
 import Helmet from 'react-helmet';
 import Grid from '@material-ui/core/Grid';
@@ -14,43 +14,13 @@ import {
   Weather,
   Aimg,
   Rimg,
+  Himg,
   Refresh,
   SmallTxt,
 } from './style';
 import { ContentMiddle } from '../../style/style';
 
 export default function Content() {
-  console.log('invoke function component');
-  const [weatherElement, setWeatherElement] = useState({
-    time: '2020-07-17 08:00',
-    location: '呆霸洗',
-    status: '多雲時晴',
-    temperature: 41,
-    rain: 30,
-    windSpeed: 0.3,
-    humid: 0.83,
-    comfortability: '',
-  });
-  useEffect(() => {
-    console.log('execute function in useEffect');
-    // Step 1：在 useEffect 中定義 async function 取名為 fetchData
-    const fetchData = async () => {
-      // Step 2：使用 Promise.all 搭配 await 等待兩個 API 都取得回應後才繼續
-      // Step 6：使用陣列的解構賦值把資料取出
-      const [currentWeather, weatherForecast] = await Promise.all([
-        fetchCurrentWeather(),
-        fetchCurrentForecast(),
-      ]);
-      //console.log('data', data);
-      // Step 7：把取得的資料透過物件的解構賦值放入
-      setWeatherElement({
-        ...currentWeather,
-        ...weatherForecast,
-      });
-    };
-    // Step 4：呼叫 fetchData 這個方法
-    fetchData();
-  }, []);
   const fetchCurrentWeather = () => {
     // 向 requestURL 發送請求
     // Step 3-1：加上 return 直接把 fetch API 回傳的 Promise 回傳出去
@@ -122,6 +92,36 @@ export default function Content() {
         })
     );
   };
+  console.log('invoke function component');
+  const [weatherElement, setWeatherElement] = useState({
+    time: '2020-07-17 08:00',
+    location: '呆霸洗',
+    status: '多雲時晴',
+    temperature: 41,
+    rain: 30,
+    windSpeed: 0.3,
+    humid: 0.83,
+    comfortability: '',
+  });
+  const fetchData = useCallback(() => {
+    const fetchingData = async () => {
+      const [currentWeather, weatherForecast] = await Promise.all([
+        fetchCurrentWeather(),
+        fetchCurrentForecast(),
+      ]);
+      setWeatherElement({
+        ...currentWeather,
+        ...weatherForecast,
+      });
+    };
+    fetchingData();
+  }, []);
+  // dependencies 改變才會產生新的 fetchData
+  useEffect(() => {
+    console.log('execute function in useEffect');
+    fetchData();
+  }, [fetchData]);
+  // fetchData 改變才會產生新的 fetchData
   return (
     <Wrapper>
       {console.log('render')}
@@ -153,23 +153,18 @@ export default function Content() {
                 <Text>{weatherElement.windSpeed} m/h</Text>
               </Row2>
               <Row2>
-                <Rimg></Rimg>
+                <Himg></Himg>
                 <Text>{weatherElement.humid * 100}%</Text>
               </Row2>
               <Row2>
-                <Text>
+                <Text fontSize="12px">
                   最後觀測時間：
                   {new Intl.DateTimeFormat('zh-TW', {
                     hour: '2-digit',
                     minute: 'numeric',
                   }).format(new Date(weatherElement.time))}
                 </Text>
-                <Refresh
-                  onClick={() => {
-                    fetchCurrentWeather();
-                    fetchCurrentForecast();
-                  }}
-                ></Refresh>
+                <Refresh onClick={fetchData}></Refresh>
               </Row2>
             </Card>
           </Grid>
