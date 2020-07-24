@@ -9,7 +9,6 @@ import {
   Location,
   Status,
   Row,
-  Row2,
   Temperture,
   Weather,
   Aimg,
@@ -136,27 +135,27 @@ export default function Content() {
               <Status>
                 {weatherElement.status} {weatherElement.comfortability}
               </Status>
-              <Row>
+              <Row justifyContent="space-between">
                 <Temperture>
                   {Math.round(weatherElement.temperature)}
                   <SmallTxt>°C</SmallTxt>
                 </Temperture>
                 <Weather></Weather>
               </Row>
-              <Row2>
+              <Row>
                 {/* 降雨機率 */}
                 <Rimg></Rimg>
                 <Text>{weatherElement.rain}%</Text>
-              </Row2>
-              <Row2>
+              </Row>
+              <Row>
                 <Aimg></Aimg>
                 <Text>{weatherElement.windSpeed} m/h</Text>
-              </Row2>
-              <Row2>
+              </Row>
+              <Row>
                 <Himg></Himg>
                 <Text>{weatherElement.humid * 100}%</Text>
-              </Row2>
-              <Row2>
+              </Row>
+              <Row justifyContent="flex-end">
                 <Text fontSize="12px">
                   最後觀測時間：
                   {new Intl.DateTimeFormat('zh-TW', {
@@ -165,7 +164,7 @@ export default function Content() {
                   }).format(new Date(weatherElement.time))}
                 </Text>
                 <Refresh onClick={fetchData}></Refresh>
-              </Row2>
+              </Row>
             </Card>
           </Grid>
           <Grid item sm={4} xs={12}>

@@ -1,14 +1,14 @@
 import styled from 'styled-components';
-import { color } from 'styled-system';
+import { typography, flexbox, color } from 'styled-system';
 import flex from '../../style/flex';
 import colors from '../../style/colors';
-import { Typography } from '@material-ui/core';
 
 export const Wrapper = styled.div``;
 
 export const Card = styled.div`
   padding: 15px;
   background-color: ${colors.hint};
+  border-radius: 8px;
 `;
 
 export const Location = styled.div`
@@ -25,13 +25,8 @@ export const Status = styled.div`
 
 export const Row = styled.div`
   ${flex.horizontal};
-  ${flex.spaceBetween};
   ${flex.centerHorizontalV};
-`;
-
-export const Row2 = styled.div`
-  ${flex.horizontal};
-  ${flex.centerHorizontalV};
+  ${flexbox}
 `;
 
 export const SmallTxt = styled.span`
@@ -51,16 +46,17 @@ const Bg = `
 export const Weather = styled.div`
   width: 85px;
   height: 85px;
+  margin-right: -10px;
+  ${Bg}
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgZGF0YS1uYW1lPSJMYXllciAxIiBpZD0iTGF5ZXJfMSIgdmlld0JveD0iMCAwIDY0IDY0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojZjc1NjNjO30uY2xzLTJ7ZmlsbDojZWZjYzAwO30uY2xzLTN7ZmlsbDojNDJiYzU5O30uY2xzLTR7ZmlsbDojMGQ5OGZmO308L3N0eWxlPjwvZGVmcz48dGl0bGUvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTU0Ljg4LDkuMTNBNDUuOCw0NS44LDAsMCwwLDkuMTMsNTQuODhoOC43MWEzNy4wOCwzNy4wOCwwLDAsMSwzNy0zNyIvPjxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTU0Ljg4LDE3Ljg0YTM3LjA4LDM3LjA4LDAsMCwwLTM3LDM3aDguNzFBMjguMzUsMjguMzUsMCwwLDEsNTQuODgsMjYuNTUiLz48cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik01NC44OCwyNi41NUEyOC4zNSwyOC4zNSwwLDAsMCwyNi41NSw1NC44OGg4LjcxQTE5LjYzLDE5LjYzLDAsMCwxLDU0Ljg4LDM1LjI3Ii8+PHBhdGggY2xhc3M9ImNscy00IiBkPSJNNTQuODgsMzUuMjdBMTkuNjMsMTkuNjMsMCwwLDAsMzUuMjcsNTQuODhINDRBMTAuODksMTAuODksMCwwLDEsNTQuODgsNDQiLz48L3N2Zz4=');
   background-position: right center;
-  ${Bg}
 `;
 
 export const Text = styled.div`
   padding: 4px 0;
   font-size: 14px;
   color: ${colors.font};
-  ${color}
+  ${typography}
 `;
 
 const SmallIcon = `
@@ -74,8 +70,10 @@ export const Refresh = styled.div`
   ${Bg}
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDMyIDMyIiBoZWlnaHQ9IjMycHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik0yNS4wMzIsMjYuMTZjMi44ODQtMi44ODMsNC4xODQtNi43NCwzLjkyOC0xMC41MWMtMS41MTEsMC4wMTMtMy4wMjEsMC4wMjEtNC41MzEsMC4wMzQgIGMwLjI1NCwyLjU5OS0wLjYwMyw1LjI4Ny0yLjU5NCw3LjI3N2MtMy41MzUsMy41MzMtOS4yNjMsMy41MzMtMTIuNzk2LDBjLTMuNTM0LTMuNTMzLTMuNTM0LTkuMjYsMC0xMi43OTQgIGMzLjAxNS0zLjAxNiw3LjYyNS0zLjQ0NiwxMS4xMDktMS4zMTRjLTEuMTgxLDEuMTY3LTIuNTcsMi41NDktMi41NywyLjU0OWMtMSwxLjA2MiwwLjAxNiwxLjc2NiwwLjY5LDEuNzdoOC44MjggIGMwLjMzOCwwLDAuNjExLTAuMjc0LDAuNjEyLTAuNjEyVjMuODA0YzAuMDQxLTAuODI1LTAuODY1LTEuNTkxLTEuNzU2LTAuN2MwLDAtMS40OTUsMS40OC0yLjUzMywyLjUwOSAgQzE4LjExMiwxLjczNiwxMC42MzQsMi4xNzUsNS44NDEsNi45NjdjLTUuMyw1LjMtNS4zLDEzLjg5MiwwLDE5LjE5M0MxMS4xNDEsMzEuNDU5LDE5LjczMywzMS40NTksMjUuMDMyLDI2LjE2eiIgZmlsbD0iIzUxNTE1MSIgaWQ9IlJlZnJlc2giLz48L3N2Zz4=');
   background-position: center;
+  background-size: 24px;
   opacity: 0.3;
   cursor: pointer;
+  margin-left: 8px;
 `;
 
 export const Aimg = styled.div`
@@ -89,7 +87,7 @@ export const Aimg = styled.div`
 export const Rimg = styled.div`
   ${SmallIcon}
   margin-right: 10px;
-  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgZGF0YS1uYW1lPSJMYXllciAxIiBpZD0iTGF5ZXJfMSIgdmlld0JveD0iMCAwIDY0IDY0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojMGJhZWZmO308L3N0eWxlPjwvZGVmcz48dGl0bGUvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTQ5LDM4YTE3LjUsMTcuNSwwLDAsMS0zNSwwQzE0LDIyLjcsMjguMjIsOC40OCwzMS41LDguNDhTNDksMjIuNyw0OSwzOFoiLz48L3N2Zz4=');
+  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgZGF0YS1uYW1lPSJMYXllciAxIiBpZD0iTGF5ZXJfMSIgdmlld0JveD0iMCAwIDY0IDY0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48ZGVmcz48c3R5bGU+LmNscy0xLC5jbHMtMntmaWxsOm5vbmU7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLW1pdGVybGltaXQ6MTA7c3Ryb2tlLXdpZHRoOjNweDt9LmNscy0xe3N0cm9rZTojMGJhZWZmO30uY2xzLTJ7c3Ryb2tlOiNiOWMxYzY7fS5jbHMtM3tmaWxsOnVybCgjbGluZWFyLWdyYWRpZW50KTt9LmNscy00e2ZpbGw6dXJsKCNsaW5lYXItZ3JhZGllbnQtMik7fTwvc3R5bGU+PGxpbmVhckdyYWRpZW50IGdyYWRpZW50VHJhbnNmb3JtPSJtYXRyaXgoLTEsIDAsIDAsIDEsIDUwOS45NywgMCkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiBpZD0ibGluZWFyLWdyYWRpZW50IiB4MT0iNDkwLjcyIiB4Mj0iNDY5LjYzIiB5MT0iNDYuMzkiIHkyPSIxOS4wOCI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZjJmMmYyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjY2ZjZmNmIi8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgZ3JhZGllbnRUcmFuc2Zvcm09Im1hdHJpeCgwLCAtMSwgLTEsIDAsIDIwOC45MSwgNDE4LjU2KSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGlkPSJsaW5lYXItZ3JhZGllbnQtMiIgeDE9IjM4My4zOCIgeDI9IjM5NC45OSIgeTE9IjE1Ni42NCIgeTI9IjE3NC4yOSI+PHN0b3Agb2Zmc2V0PSIwLjAyIiBzdG9wLWNvbG9yPSIjZmZmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZmIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48dGl0bGUvPjxsaW5lIGNsYXNzPSJjbHMtMSIgeDE9IjI2LjUiIHgyPSIyNi41IiB5MT0iNDguNSIgeTI9IjUxLjUiLz48bGluZSBjbGFzcz0iY2xzLTIiIHgxPSIyNi41IiB4Mj0iMjYuNSIgeTE9IjU1LjUiIHkyPSI1NS41Ii8+PGxpbmUgY2xhc3M9ImNscy0xIiB4MT0iMzIuNSIgeDI9IjMyLjUiIHkxPSI1MC41IiB5Mj0iNTMuNSIvPjxsaW5lIGNsYXNzPSJjbHMtMiIgeDE9IjMyLjUiIHgyPSIzMi41IiB5MT0iNTcuNSIgeTI9IjU3LjUiLz48bGluZSBjbGFzcz0iY2xzLTEiIHgxPSIzOC41IiB4Mj0iMzguNSIgeTE9IjQ4LjUiIHkyPSI1MS41Ii8+PGxpbmUgY2xhc3M9ImNscy0yIiB4MT0iMzguNSIgeDI9IjM4LjUiIHkxPSI1NS41IiB5Mj0iNTUuNSIvPjxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTIzLjY2LDkuOWExNy40OSwxNy40OSwwLDAsMSwxNS40Nyw5LjMyQTEzLjc1LDEzLjc1LDAsMSwxLDQ2LDQ0Ljg0bC0yMi4zOS4wNmExNy41LDE3LjUsMCwwLDEsMC0zNVoiLz48Y2lyY2xlIGNsYXNzPSJjbHMtNCIgY3g9IjQ2LjA1IiBjeT0iMzEuMDkiIHI9IjEzLjc1IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzLjcyIDY3LjA4KSByb3RhdGUoLTc0LjM5KSIvPjwvc3ZnPg==');
   background-position: left center;
   ${Bg}
 `;
